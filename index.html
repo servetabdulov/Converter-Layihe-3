@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="image/logoImg.svg" alt=".">
+        </div>
+        <div class="headerMenu">
+            <p>БАНК</p>
+            <p>БИЗНЕС</p>
+            <p>ИНВЕСТИЦИИ</p>
+            <p>СТРАХОВАНИЕ</p>
+            <p>МОБАЙЛ</p>
+            <p>ПУТЕШЕСТВИЯ</p>
+            <p>РАЗВЛЕЧЕНИЯ</p>
+        </div>
+        <div class="login">
+            <button>ВОЙТИ</button>
+        </div>
+    </div>
+    <div class="main">
+        <h1>Конвертер валют онлайн</h1>
+        
+        <div class="calculator">
+            <div class="left">
+                <p>У меня есть</p>
+                <div class="left-value-buttons">
+                    <button value="RUB" class="first actived">RUB</button>
+                    <button value="USD">USD</button>
+                    <button value="EUR">EUR</button>
+                    <button value="GBP" class="last">GBP</button>
+                </div>
+                <div class="price">
+                    <input placeholder='0.00' inputmode="decimal" type="text" value="1">
+                    <p>1 RUB = 0.0135 USD</p>
+                </div>
+            </div>
+            
+            <div class="right">
+                <p>Хочу приобрести</p>
+                <div class="right-value-buttons">
+                    <button value="RUB" class="first">RUB</button>
+                    <button value="USD" class="act actived">USD</button>
+                    <button value="EUR">EUR</button>
+                    <button value="GBP" class="last">GBP</button>
+                </div>
+                <div class="price">
+                    <input placeholder='...' inputmode="decimal" type="text">
+                    <p>1 USD = 73.8896 RUB</p>
+                </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
