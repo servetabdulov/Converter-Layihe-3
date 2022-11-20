@@ -108,7 +108,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
                 }else{
                     leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                    leftInput(leftInput)
+                    leftInput(leftInput);
                 }
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
                 fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)

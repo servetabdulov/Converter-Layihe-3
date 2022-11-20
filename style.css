@@ -85,13 +85,13 @@ body{
         color: #9F9F9F;
         font-size: 1.216vw;
       }
-      .calculator .left-value-buttons, .calculator .right-value-buttons {
+      .calculator .leftValueButtons, .calculator .rightValueButtons {
         font-size: 0px;
         margin-bottom: 1.736vw;
         margin-top: 0.087vw;
         font-family: 'Roboto';
       }
-      .calculator .left-value-buttons button, .calculator .right-value-buttons button {
+      .calculator .leftValueButtons button, .calculator .rightValueButtons button {
         border-radius: 0px;
         border: 1px solid #E5E5E5;
         outline: none;
@@ -101,15 +101,19 @@ body{
         cursor: pointer;
         font-size: 1.042vw;
       }
-      .calculator .left-value-buttons button.actived, .calculator .right-value-buttons button.actived {
+      .calculator .leftValueButtons button.actived, .calculator .rightValueButtons button.actived {
         background: #833AE0;
         color: #fff;
       }
-      .calculator .left-value-buttons .first, .calculator .right-value-buttons .first {
+      .calculator .leftValueButtons button:hover, .calculator .rightValueButtons button:hover{
+        background-color: #833AE0;
+        color: #fff;
+      }
+      .calculator .leftValueButtons .first, .calculator .rightValueButtons .first {
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
       }
-      .calculator .left-value-buttons .last, .calculator .right-value-buttons .last {
+      .calculator .leftValueButtons .last, .calculator .rightValueButtons .last {
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px;
       }
@@ -205,13 +209,13 @@ body{
         color: #9F9F9F;
         font-size: 14px;
       }
-      .calculator .left-value-buttons, .calculator .right-value-buttons {
+      .calculator .leftValueButtons, .calculator .rightValueButtons {
         font-size: 0px;
         margin-bottom: 19.999px;
         margin-top: 1.002px;
         font-family: 'Roboto';
       }
-      .calculator .left-value-buttons button, .calculator .right-value-buttons button {
+      .calculator .leftValueButtons button, .calculator .rightValueButtons button {
         border-radius: 0px;
         border: 1px solid #E5E5E5;
         outline: none;
@@ -221,15 +225,19 @@ body{
         cursor: pointer;
         font-size: 12px;
       }
-      .calculator .left-value-buttons button.actived, .calculator .right-value-buttons button.actived {
+      .calculator .leftValueButtons button.actived, .calculator .rightValueButtons button.actived {
         background: #833AE0;
         color: #fff;
       }
-      .calculator .left-value-buttons .first, .calculator .right-value-buttons .first {
+      .calculator .leftValueButtons button:hover, .calculator .rightValueButtons button:hover{
+        background-color: #833AE0;
+        color: #fff;
+      }
+      .calculator .leftValueButtons .first, .calculator .rightValueButtons .first {
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
       }
-      .calculator .left-value-buttons .last, .calculator .right-value-buttons .last {
+      .calculator .leftValueButtons .last, .calculator .rightValueButtons .last {
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px;
       }
