@@ -50,33 +50,7 @@ function api(buttonParent) {
     }
 };
 
-function leftInput(inp){
-    var numberMask = IMask(inp,{
-      mask: Number, 
-      scale: 6,  
-      signed: false,  
-      thousandsSeparator:' ',  
-      padFractionalZeros: false,  
-      normalizeZeros: true,  
-      radix: '.',  
-      mapToRadix: ['.'],  
-    })
-}
-leftInput(leftInput);
 
-function rightInput(inp){
-  var numberMask = IMask(inp,{
-    mask: Number, 
-    scale: 6,  
-    signed: false,  
-    thousandsSeparator:' ',  
-    padFractionalZeros: false,  
-    normalizeZeros: true,  
-    radix: '.',  
-    mapToRadix: ['.'],  
-  })
-}
-rightInput(rightInput);
 
 function FetchL(baseValue, symbolsValue) {
     if (baseValue != symbolsValue) {
@@ -88,7 +62,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
             }else{
                 leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                leftInput(leftInput)
+                
             }
             rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]} ${baseValue}`;
             
@@ -98,7 +72,7 @@ function FetchL(baseValue, symbolsValue) {
             }).then((data) => {
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
             })
-            });
+            })
         }else if (baseValue == symbolsValue) {
             fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
             .then((res) => {
@@ -108,7 +82,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
                 }else{
                     leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                    leftInput(leftInput);
+                    
                 }
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
                 fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
@@ -120,3 +94,67 @@ function FetchL(baseValue, symbolsValue) {
             })
     }
 }
+
+function FetchR(baseValue, symbolsValue) {
+    if (baseValue != symbolsValue) {
+        fetch(`https://api.exchangerate.host/latest?base=${baseValue}&symbols=${symbolsValue}`)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                if(leftInput.value==''){
+                    rightInput.value='';
+                }
+                else{
+                    rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
+                    
+                }
+       
+        
+                leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
+                fetch(
+                    `https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`
+                )
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]
+                            } ${baseValue}`;
+                    });
+            });
+    }
+    else if (baseValue == symbolsValue) {
+        fetch(
+            `https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`
+        )
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                if(leftInput.value==''){
+                    rightInput.value='';
+                }
+                else{
+                    rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
+                    
+                }
+                rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]
+                    } ${baseValue}`;
+                fetch(
+                    `https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`
+                )
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]
+                            } ${symbolsValue}`;
+                    });
+            })
+    }
+}
+
+var num = 1234567
+result = Number(num.toFixed(0)).toLocaleString() + '.' + Number(num.toString().slice(num.toString().indexOf('.')+1)).toLocaleString()
+console.log(result)
