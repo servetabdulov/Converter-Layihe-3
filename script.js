@@ -155,6 +155,4 @@ function FetchR(baseValue, symbolsValue) {
     }
 }
 
-var num = 1234567
-result = Number(num.toFixed(0)).toLocaleString() + '.' + Number(num.toString().slice(num.toString().indexOf('.')+1)).toLocaleString()
-console.log(result)
+
