@@ -51,8 +51,6 @@ function api(buttonParent) {
     }
 };
 
-
-
 function FetchL(baseValue, symbolsValue) {
     if (baseValue != symbolsValue) {
         fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
@@ -63,7 +61,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
             }else{
                 leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                
+                leftInputF(leftInput)
             }
             rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]} ${baseValue}`;
             
@@ -83,7 +81,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
                 }else{
                     leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                    
+                    leftInputF(leftInput)
                 }
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
                 fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
@@ -108,7 +106,7 @@ function FetchR(baseValue, symbolsValue) {
                 }
                 else{
                     rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
-                    
+                    rightInputF(rightInput)
                 }
        
         
@@ -138,7 +136,7 @@ function FetchR(baseValue, symbolsValue) {
                 }
                 else{
                     rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
-                    
+                    rightInputF(rightInput)
                 }
                 rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]
                     } ${baseValue}`;
@@ -155,8 +153,31 @@ function FetchR(baseValue, symbolsValue) {
             })
     }
 }
-let headerMenuPhone = document.querySelector('.headerMenuPhone');
-let menuLogo = document.querySelector('.menuLogo');
-menuLogo.addEventListener('click', ()=>{
-    headerMenuPhone.style.display = "flex";
-});
+
+function leftInputF(inp){
+    var numberMask = IMask(inp,{
+      mask: Number, 
+      scale: 6,  
+      signed: false,  
+      thousandsSeparator:' ',  
+      padFractionalZeros: false,  
+      normalizeZeros: true,  
+      radix: '.',  
+      mapToRadix: ['.'],  
+    })
+}
+leftInputF(leftInput)
+
+function rightInputF(inp){
+  var numberMask = IMask(inp,{
+    mask: Number, 
+    scale: 6,  
+    signed: false,  
+    thousandsSeparator:' ',  
+    padFractionalZeros: false,  
+    normalizeZeros: true,  
+    radix: '.',  
+    mapToRadix: ['.'],  
+  })
+}
+rightInputF(rightInput)
