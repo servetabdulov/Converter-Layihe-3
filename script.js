@@ -36,7 +36,8 @@ leftInput.addEventListener('input', (e) => {
     FetchR(base, symbols);
 });
 
-rightInput.addEventListener('input', () => {
+rightInput.addEventListener('input', (y) => {
+    y.target.value = y.target.value.split(',').join('.');
     FetchL(base, symbols);
 });
 
@@ -154,5 +155,8 @@ function FetchR(baseValue, symbolsValue) {
             })
     }
 }
-
-
+let headerMenuPhone = document.querySelector('.headerMenuPhone');
+let menuLogo = document.querySelector('.menuLogo');
+menuLogo.addEventListener('click', ()=>{
+    headerMenuPhone.style.display = "flex";
+});
