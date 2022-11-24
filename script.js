@@ -32,12 +32,12 @@ function showButton() {
 showButton();
 
 leftInput.addEventListener('input', (e) => {
-    e.target.value = e.target.value.split(',').join('.');
+    
     FetchR(base, symbols);
 });
 
 rightInput.addEventListener('input', (y) => {
-    y.target.value = y.target.value.split(',').join('.');
+    
     FetchL(base, symbols);
 });
 
@@ -61,7 +61,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
             }else{
                 leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                leftInputF(leftInput)
+                leftInputFunction(leftInput)
             }
             rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]} ${baseValue}`;
             
@@ -81,7 +81,7 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
                 }else{
                     leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                    leftInputF(leftInput)
+                    leftInputFunction(leftInput)
                 }
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
                 fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
@@ -106,7 +106,7 @@ function FetchR(baseValue, symbolsValue) {
                 }
                 else{
                     rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
-                    rightInputF(rightInput)
+                    rightInputFunction(rightInput)
                 }
        
         
@@ -136,7 +136,7 @@ function FetchR(baseValue, symbolsValue) {
                 }
                 else{
                     rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
-                    rightInputF(rightInput)
+                    rightInputFunction(rightInput)
                 }
                 rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]
                     } ${baseValue}`;
@@ -154,7 +154,7 @@ function FetchR(baseValue, symbolsValue) {
     }
 }
 
-function leftInputF(inp){
+function leftInputFunction(inp){
     var numberMask = IMask(inp,{
       mask: Number, 
       scale: 6,  
@@ -166,9 +166,9 @@ function leftInputF(inp){
       mapToRadix: ['.'],  
     })
 }
-leftInputF(leftInput)
+leftInputFunction(leftInput)
 
-function rightInputF(inp){
+function rightInputFunction(inp){
   var numberMask = IMask(inp,{
     mask: Number, 
     scale: 6,  
@@ -180,4 +180,4 @@ function rightInputF(inp){
     mapToRadix: ['.'],  
   })
 }
-rightInputF(rightInput)
+rightInputFunction(rightInput)
