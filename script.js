@@ -9,7 +9,7 @@ let rightText = document.querySelector(".right .price p");
 
 let base = 'RUB';
 let symbols = 'USD';
-window.addEventListener('load', e => FetchR (base, symbols));
+window.addEventListener('load', e => fetchRight (base, symbols));
 
 function showButton() {
     leftButton.forEach(elements => {
@@ -31,27 +31,24 @@ function showButton() {
 };
 showButton();
 
-leftInput.addEventListener('input', (e) => {
-    
-    FetchR(base, symbols);
+leftInput.addEventListener('input', () => {
+    fetchRight(base, symbols);
 });
 
-rightInput.addEventListener('input', (y) => {
-    
-    FetchL(base, symbols);
+rightInput.addEventListener('input', () => {
+    fetchLeft(base, symbols);
 });
 
 function api(buttonParent) {
     if (buttonParent == 'leftValueButtons') {
-
-        FetchL(base, symbols);
+        fetchLeft(base, symbols);
     }
     if (buttonParent == 'rightValueButtons') {
-        FetchR(base, symbols)
+        fetchRight(base, symbols)
     }
 };
 
-function FetchL(baseValue, symbolsValue) {
+function fetchLeft(baseValue, symbolsValue) {
     if (baseValue != symbolsValue) {
         fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
         .then((res) => {
@@ -61,7 +58,6 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
             }else{
                 leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                leftInputFunction(leftInput)
             }
             rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]} ${baseValue}`;
             
@@ -81,7 +77,6 @@ function FetchL(baseValue, symbolsValue) {
                     leftInput.value='';
                 }else{
                     leftInput.value = rightInput.value.replace(/\s+/g, '') * data.rates[`${baseValue}`]
-                    leftInputFunction(leftInput)
                 }
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
                 fetch(`https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`)
@@ -94,7 +89,7 @@ function FetchL(baseValue, symbolsValue) {
     }
 }
 
-function FetchR(baseValue, symbolsValue) {
+function fetchRight(baseValue, symbolsValue) {
     if (baseValue != symbolsValue) {
         fetch(`https://api.exchangerate.host/latest?base=${baseValue}&symbols=${symbolsValue}`)
             .then((res) => {
@@ -106,10 +101,7 @@ function FetchR(baseValue, symbolsValue) {
                 }
                 else{
                     rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
-                    rightInputFunction(rightInput)
                 }
-       
-        
                 leftText.innerHTML = `1 ${data.base} = ${data.rates[`${symbolsValue}`]} ${symbolsValue}`;
                 fetch(
                     `https://api.exchangerate.host/latest?base=${symbolsValue}&symbols=${baseValue}`
@@ -118,8 +110,7 @@ function FetchR(baseValue, symbolsValue) {
                         return res.json();
                     })
                     .then((data) => {
-                        rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]
-                            } ${baseValue}`;
+                        rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]} ${baseValue}`;
                     });
             });
     }
@@ -136,7 +127,6 @@ function FetchR(baseValue, symbolsValue) {
                 }
                 else{
                     rightInput.value = leftInput.value.replace(/\s+/g, '') * data.rates[`${symbolsValue}`];
-                    rightInputFunction(rightInput)
                 }
                 rightText.innerHTML = `1 ${data.base} = ${data.rates[`${baseValue}`]
                     } ${baseValue}`;
@@ -154,7 +144,7 @@ function FetchR(baseValue, symbolsValue) {
     }
 }
 
-function leftInputFunction(inp){
+function maskInputFunction(inp){
     var numberMask = IMask(inp,{
       mask: Number, 
       scale: 6,  
@@ -166,18 +156,5 @@ function leftInputFunction(inp){
       mapToRadix: ['.'],  
     })
 }
-leftInputFunction(leftInput)
-
-function rightInputFunction(inp){
-  var numberMask = IMask(inp,{
-    mask: Number, 
-    scale: 6,  
-    signed: false,  
-    thousandsSeparator:' ',  
-    padFractionalZeros: false,  
-    normalizeZeros: true,  
-    radix: '.',  
-    mapToRadix: ['.'],  
-  })
-}
-rightInputFunction(rightInput)
+maskInputFunction(leftInput)
+maskInputFunction(rightInput)
